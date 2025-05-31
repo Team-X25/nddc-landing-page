@@ -106,7 +106,6 @@ const LifeOfDelta = () => {
       containerAnimation: horizontalScroll,
       start: "left center",
       end: "right center",
-      markers: true,
       scrub: true,
       onEnter: () => {
         gsap.to(section, {
