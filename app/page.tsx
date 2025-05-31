@@ -5,6 +5,7 @@ import Explore from "@/components/explore";
 import Header from "@/components/header";
 import Heroes from "@/components/heroes";
 import LifeOfDelta from "@/components/lifeOfDelta";
+import Museum from "@/components/museum";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Header />
       <Explore />
       <LifeOfDelta />
+      <Museum />
       <Art />
       <Heroes />
       <Events />
