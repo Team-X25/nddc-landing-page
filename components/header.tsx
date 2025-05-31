@@ -16,7 +16,9 @@ const Header = () => {
           through immersive 3D exhibits and interactive displays.
         </p>
 
-        <button className="bg-[#342F2C] rounded-[8px] py-4 px-12 text-white cursor-pointer">View Exhibits</button>
+        <button className="bg-[#342F2C] rounded-[8px] py-4 px-12 text-white cursor-pointer">
+          View Exhibits
+        </button>
       </div>
     </header>
   );

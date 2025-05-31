@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Museum = () => {
-  return (
-    <div>museum</div>
-  )
-}
+  return <div>museum</div>;
+};
 
-export default Museum
+export default Museum;
