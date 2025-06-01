@@ -3,6 +3,7 @@ import { Card, CardContent } from "./ui/card";
 // import { Separator } from "./ui/separator";
 import Image from "next/image";
 import ken from "@/public/assets/archive.jpg";
+import scroll from "@/public/assets/scroll.jpg";
 import LinkToIconWhite from "@/public/assets/icons/link-to-white";
 
 const Archives = () => {
@@ -35,7 +36,7 @@ const Archives = () => {
         <Card className="py-5 bg-transparent border-y-2 border rounded-none border-white border-x-0 px-none w-full max-w-[1000px]">
           <CardContent className="h-[250px] flex flex-row gap-5 p-0">
             <Image
-              src={ken}
+              src={scroll}
               alt="image of Ken"
               className="w-[350px] bg-center bg-cover"
             />
@@ -53,7 +54,7 @@ const Archives = () => {
         <Card className="py-5 bg-transparent border-y-2 border rounded-none border-white border-x-0 px-none w-full max-w-[1000px]">
           <CardContent className="h-[250px] flex flex-row gap-5 p-0">
             <Image
-              src={ken}
+              src={scroll}
               alt="image of Ken"
               className="w-[350px] bg-center bg-cover"
             />
@@ -71,7 +72,7 @@ const Archives = () => {
         <Card className="py-5 bg-transparent border-y-2 border rounded-none border-white border-x-0 px-none w-full max-w-[1000px]">
           <CardContent className="h-[250px] flex flex-row gap-5 p-0">
             <Image
-              src={ken}
+              src={scroll}
               alt="image of Ken"
               className="w-[350px] bg-center bg-cover"
             />
