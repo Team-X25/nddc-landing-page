@@ -1,7 +1,7 @@
 interface MenuProps {
   textColor: string;
 }
-const MenuIconBlack = ({textColor}: MenuProps) => {
+const MenuIconBlack = ({ textColor }: MenuProps) => {
   return (
     <svg
       width="30"
@@ -12,7 +12,13 @@ const MenuIconBlack = ({textColor}: MenuProps) => {
     >
       <line y1="1.75" x2="30" y2="1.75" stroke={textColor} strokeWidth="2.5" />
       <line y1="9.75" x2="30" y2="9.75" stroke={textColor} strokeWidth="2.5" />
-      <line y1="17.75" x2="30" y2="17.75" stroke={textColor} strokeWidth="2.5" />
+      <line
+        y1="17.75"
+        x2="30"
+        y2="17.75"
+        stroke={textColor}
+        strokeWidth="2.5"
+      />
     </svg>
   );
 };

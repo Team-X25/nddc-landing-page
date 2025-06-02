@@ -10,7 +10,9 @@ const Events = () => {
   return (
     <section className="bg-black min-h-screen p-10 flex flex-col justify-center items-center">
       <header className="text-center text-white flex flex-col gap-4">
-        <h1 className="text-4xl font-times">EVENTS AND FESTIVALS FROM THE DELTA</h1>
+        <h1 className="text-4xl font-times">
+          EVENTS AND FESTIVALS FROM THE DELTA
+        </h1>
         <p>Explore the Collection</p>
       </header>
       <main className="w-full flex flex-row flex-wrap justify-center items-center mt-10 gap-5">
@@ -22,8 +24,10 @@ const Events = () => {
             </div>
             <div>
               <p>
-                A secret society masquerade festival celebrating ancestral spirits. <br />
-                Ekpo dancers wear fierce masks and perform symbolic rituals. Celebrated amongst Ibibio and Annang communities.
+                A secret society masquerade festival celebrating ancestral
+                spirits. <br />
+                Ekpo dancers wear fierce masks and perform symbolic rituals.
+                Celebrated amongst Ibibio and Annang communities.
               </p>
             </div>
           </CardContent>
@@ -44,8 +48,9 @@ const Events = () => {
             </div>
             <div>
               <p>
-                Celebrated by the Itsekiri people. A secretive, spiritual festival featuring masked figures and initiations.
-                Women and non-initiates are often restricted from participating.
+                Celebrated by the Itsekiri people. A secretive, spiritual
+                festival featuring masked figures and initiations. Women and
+                non-initiates are often restricted from participating.
               </p>
             </div>
           </CardContent>
@@ -68,8 +73,10 @@ const Events = () => {
             </div>
             <div>
               <p>
-                A secret society festival blending politics, tradition, and ritual. <br />
-                Associated with the revered “Nsibidi” writing system. Includes processions, chants, and symbolic animal dances.
+                A secret society festival blending politics, tradition, and
+                ritual. <br />
+                Associated with the revered “Nsibidi” writing system. Includes
+                processions, chants, and symbolic animal dances.
               </p>
             </div>
           </CardContent>
@@ -90,9 +97,9 @@ const Events = () => {
             </div>
             <div>
               <p>
-                Celebrated by the Itsekiri people. <br />
-                A secretive, spiritual festival featuring masked figures and initiations.
-                Women and non-initiates are often restricted from participating.
+                Celebrated by the Itsekiri people. <br />A secretive, spiritual
+                festival featuring masked figures and initiations. Women and
+                non-initiates are often restricted from participating.
               </p>
             </div>
           </CardContent>
