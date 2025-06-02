@@ -29,29 +29,29 @@ const Explore = () => {
 
   return (
     <section
-      className="min-h-screen bg-cover bg-center mt-12 pt-[5rem]"
+      className="lg:min-h-screen w-full bg-cover bg-center mt-12 pt-[5rem] pb-[clamp(3rem,8vw,12rem)]"
       style={{ backgroundImage: `url(${Bg.src})` }}
     >
-      <div className="container h-full flex flex-col justify-end gap-[12rem]">
-        <div className="flex items-center justify-around flex-wrap">
+      <div className="h-full flex flex-col justify-end gap-[clamp(3rem,8vw,12rem)]">
+        <div className="flex items-center justify-around flex-wrap gap-[clamp(1rem,2vw,4rem)]">
           {ExploreData.map((item, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center text-white font-times"
+              className="flex flex-col items-center justify-center text-white font-times gap-[clamp(0.5rem,1vw,2rem)]"
             >
-              <p className="text-[clamp(48px,6.944vw,100px)] leading-[100%]">
+              <p className="text-[clamp(24px,6vw,100px)] leading-[100%]">
                 {item.value}
               </p>
-              <p className="text-[clamp(14px,1.666vw,24px)]">{item.label}</p>
+              <p className="text-[clamp(12px,1.5vw,24px)]">{item.label}</p>
             </div>
           ))}
         </div>
 
-        <div className="max-w-[774px] w-full p-8 bg-white flex flex-col gap-6">
-          <h4 className="text-[clamp(18px,2.5vw,36px)] leading-[100%] text-[#342F2C]">
+        <div className="max-w-[774px] w-full p-[clamp(1rem,2vw,8rem)] bg-white flex flex-col gap-[clamp(1rem,2vw,6rem)] mx-[clamp(1rem,2vw,20px)]">
+          <h4 className="text-[clamp(16px,2vw,36px)] leading-[100%] text-[#342F2C]">
             Explore. Discover. Connect.
           </h4>
-          <p className="text-[clamp(14px,1.666vw,24px)] text-[#342F2C] max-w-[726px]">
+          <p className="text-[clamp(12px,1.5vw,24px)] text-[#342F2C] max-w-[726px]">
             Step into a world where history lives, culture speaks, and stories
             echo through time. The Niger Delta Digital Museum invites you to
             embark on an unforgettable journey through the rich heritage of one
@@ -64,8 +64,8 @@ const Explore = () => {
             your story, our collective story.
           </p>
 
-          <div className="flex items-center gap-2 cursor-pointer">
-            <p className="text-[clamp(14px,1.666vw,24px)] text-[#342F2C]">
+          <div className="flex items-center gap-[clamp(0.5rem,1vw,2rem)] cursor-pointer">
+            <p className="text-[clamp(12px,1.5vw,24px)] text-[#342F2C]">
               Explore more
             </p>
             <LinkToIcon />

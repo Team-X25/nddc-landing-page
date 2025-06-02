@@ -9,7 +9,9 @@ import Bg6 from "@/public/assets/h-scroll-image-6.jpg";
 import LinkToIconWhite from "@/public/assets/icons/link-to-white";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ScrollIcon from "@/public/assets/icons/scroll-icon";
 
+// Register GSAP ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 const LifeOfDelta = () => {
@@ -62,17 +64,18 @@ const LifeOfDelta = () => {
 
     const totalScrollWidth = scrollContainer.scrollWidth;
     const viewportWidth = window.innerWidth;
-    const scrollDistance = totalScrollWidth - viewportWidth;
+
+    // Ensure the last card is fully visible and remove excess space
+    const adjustedScrollDistance = totalScrollWidth - viewportWidth;
 
     // Horizontal scroll animation
     const horizontalScroll = gsap.to(scrollContainer, {
-      x: -scrollDistance,
+      x: -adjustedScrollDistance,
       ease: "none",
       scrollTrigger: {
         trigger: section,
         start: "top top",
-        end: () =>
-          `${scrollContainer.scrollWidth - viewportWidth + window.innerHeight}`,
+        end: () => `${totalScrollWidth - viewportWidth}`,
         scrub: 1,
         pin: true,
         anticipatePin: 1,
@@ -122,20 +125,24 @@ const LifeOfDelta = () => {
     });
   }, []);
 
+  // Updated styles to ensure responsiveness across all screen sizes
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#1E1E1E] text-white min-h-screen py-[5rem]"
+      className="relative bg-[#1E1E1E] text-white min-h-screen py-[5rem] overflow-hidden"
     >
-      <div ref={horizontalRef} className="flex gap-20 w-max px-[20px]">
-        <div className="shrink-0 w-[45vw]">
-          <h2 className="text-[clamp(36px,5vw,72px)] font-times leading-[100%] mb-8">
+      <div
+        ref={horizontalRef}
+        className="flex gap-20 w-max px-[clamp(10px,5%,20px)]"
+      >
+        <div className="shrink-0 w-[clamp(300px,45vw,600px)]">
+          <h2 className="text-[clamp(24px,5vw,72px)] font-times leading-[100%] mb-8">
             Discover the Life and Times of the Niger Delta People
           </h2>
-          <p className="text-[clamp(14px,1.46vw,21px)] mb-4">
+          <p className="text-[clamp(12px,1.46vw,21px)] mb-4">
             We encourage you to immerse yourself fully:
           </p>
-          <ul className="text-[clamp(14px,1.46vw,21px)] list-disc pl-5 mb-8">
+          <ul className="text-[clamp(12px,1.46vw,21px)] list-disc pl-5 mb-8">
             <li>Browse through centuries-old manuscripts and documents</li>
             <li>Listen to oral histories and songs in native tongues</li>
             <li>Interact with 3D artifacts and explore ancient kingdoms</li>
@@ -143,33 +150,38 @@ const LifeOfDelta = () => {
           </ul>
         </div>
 
-        <div className="flex gap-[5rem]">
+        <div className="flex gap-[clamp(20px,5rem,80px)]">
           {cardData.map((item, index) => (
             <div
               key={index}
               className="shrink-0 bg-cover bg-center rounded-4xl"
               style={{
-                width: "clamp(260px, 29.93vw, 431px)",
-                height: "clamp(480px, 75.59vh, 774px)",
-                padding: "clamp(12px, 1.11vw, 16px)",
+                width: "clamp(200px, 29.93vw, 431px)",
+                height: "clamp(300px, 75.59vh, 774px)",
+                padding: "clamp(8px, 1.11vw, 16px)",
                 backgroundImage: `url(${item.bgImage.src})`,
               }}
             >
               <div className="flex flex-col justify-end items-center gap-4 h-full">
-                <h4 className="text-[clamp(14px,1.666vw,24px)] text-center font-medium leading-[100%]">
+                <h4 className="text-[clamp(12px,1.666vw,24px)] text-center font-medium leading-[100%]">
                   {item.title}
                 </h4>
-                <p className="text-[clamp(14px,1.25vw,18px)] text-center">
+                <p className="text-[clamp(12px,1.25vw,18px)] text-center">
                   {item.description}
                 </p>
                 <div className="flex items-center gap-2 cursor-pointer">
-                  <p className="text-[clamp(14px,1.25vw,18px)]">Explore more</p>
+                  <p className="text-[clamp(12px,1.25vw,18px)]">Explore more</p>
                   <LinkToIconWhite />
                 </div>
               </div>
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="flex items-center justify-end flex-wrap gap-3 mt-[clamp(10px,5%,20px)] pr-[clamp(10px,5%,20px)]">
+        <p className="text-[clamp(12px,1.25vw,18px)]">Scroll for more</p>
+        <ScrollIcon />
       </div>
     </section>
   );
