@@ -153,3 +153,15 @@ section {
     @apply bg-background text-foreground;
   }
 }
+
+.aspect-380-605 {
+  aspect-ratio: 380 / 605;
+}
+.aspect-380-300 {
+  aspect-ratio: 380 / 300;
+}
+@media (max-width: 640px) {
+  .max-sm\:max-h-400px {
+    max-height: 400px;
+  }
+}

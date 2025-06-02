@@ -12,8 +12,8 @@ const Heroes = () => {
         <p className="text-lg">Notable political activists and heroes from the Niger Delta, who have made significant contributions through advocacy, literature, political leadership, environmental justice, and cultural preservation.</p>
       </header>
 
-      <div className="mt-12 flex-wrap grid grid-cols-3 justify-center">
-        {heroes.map ((hero) => <Card key={hero.hero} className="h-[538px] w-[443px] rounded-none border-none p-4 flex justify-end  bg-cover bg-center"
+      <div className="mt-12 flex-wrap grid group-last:id-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center">
+        {heroes.map ((hero) => <Card key={hero.hero} className="h-[400px] w-[323px] sm:h-[358px] sm:w-[343px] lg:h-[538px] lg:w-[443px] rounded-none border-none p-4 flex justify-end  bg-cover bg-center"
           style={{backgroundImage: `url(${hero.image.src})`}}
         >
           <CardContent className="relative bottom-0 bg-white w-fit p-2 flex flex-row items-center">

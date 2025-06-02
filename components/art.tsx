@@ -25,7 +25,6 @@ const Art = () => {
         <h1 className="text-4xl font-times">ART FROM THE DELTA</h1>
         <p>Explore the Collection</p>
       </header>
-
       <div className="mt-12 flex flex-wrap gap-6 justify-center">
         {artworks.map((art, index) => (
           <ArtCard key={index} title={art.title} image={art.image} />
