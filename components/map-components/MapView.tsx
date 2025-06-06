@@ -2,24 +2,23 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   MapContainer,
   TileLayer,
-  GeoJSON,
   Marker,
   Popup,
   useMap,
 } from "react-leaflet";
-import { Icon, LatLngBounds, LatLngTuple } from "leaflet";
+import { Icon, LatLngTuple } from "leaflet";
 import { Maximize, Minimize, Compass } from "lucide-react";
 import { State, City } from "../../types/map-types";
 import { motion } from "framer-motion";
 
 // Niger Delta GeoJSON boundaries would go here in a real app
 // This is simplified for the example
-const dummyGeoJSON = {
-  type: "FeatureCollection",
-  features: [
-    // Features would contain actual state boundaries
-  ],
-};
+// const dummyGeoJSON = {
+//   type: "FeatureCollection",
+//   features: [
+//     // Features would contain actual state boundaries
+//   ],
+// };
 
 interface MapViewProps {
   states: State[];
