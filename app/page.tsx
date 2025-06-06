@@ -8,8 +8,8 @@ import Explore from "@/components/explore";
 import Header from "@/components/header";
 import Heroes from "@/components/heroes";
 import LifeOfDelta from "@/components/lifeOfDelta";
-import Museum from "@/components/museum";
 import Footer from "@/components/footer";
+import MapPage from "@/components/map";
 
 const Home = () => {
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
@@ -20,7 +20,7 @@ const Home = () => {
     { id: "header", component: <Header /> },
     { id: "explore", component: <Explore /> },
     { id: "lifeOfDelta", component: <LifeOfDelta /> },
-    { id: "museum", component: <Museum /> },
+    { id: "map", component: <MapPage /> },
     { id: "art", component: <Art /> },
     { id: "heroes", component: <Heroes /> },
     { id: "events", component: <Events /> },
@@ -60,7 +60,7 @@ const Home = () => {
   const getTextColor = () => {
     switch (activeSection) {
       case "header":
-      case "museum":
+      case "map":
         return "#1E1E1E";
 
       case "explore":
