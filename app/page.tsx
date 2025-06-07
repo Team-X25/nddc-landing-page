@@ -1,15 +1,19 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Navbar from "@/components/navbar";
-import Archives from "@/components/archives";
-import Art from "@/components/art";
-import Events from "@/components/events";
-import Explore from "@/components/explore";
-import Header from "@/components/header";
-import Heroes from "@/components/heroes";
-import LifeOfDelta from "@/components/lifeOfDelta";
-import Footer from "@/components/footer";
-import MapPage from "@/components/map";
+import dynamic from "next/dynamic";
+
+const Navbar = dynamic(() => import("@/components/navbar"), { ssr: false });
+const Archives = dynamic(() => import("@/components/archives"), { ssr: false });
+const Art = dynamic(() => import("@/components/art"), { ssr: false });
+const Events = dynamic(() => import("@/components/events"), { ssr: false });
+const Explore = dynamic(() => import("@/components/explore"), { ssr: false });
+const Header = dynamic(() => import("@/components/header"), { ssr: false });
+const Heroes = dynamic(() => import("@/components/heroes"), { ssr: false });
+const Footer = dynamic(() => import("@/components/footer"), { ssr: false });
+const MapPage = dynamic(() => import("@/components/map"), { ssr: false });
+const LifeOfDelta = dynamic(() => import("@/components/lifeOfDelta"), {
+  ssr: false,
+});
 
 const Home = () => {
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
@@ -29,6 +33,8 @@ const Home = () => {
   ];
 
   useEffect(() => {
+    if (typeof window === "undefined") return; // Ensure this runs only in the browser
+
     const handleScroll = () => {
       if (!navbarRef.current) return;
       const navRect = navbarRef.current.getBoundingClientRect();

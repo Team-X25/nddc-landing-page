@@ -56,6 +56,8 @@ const LifeOfDelta = () => {
   ];
 
   useEffect(() => {
+    if (typeof window === "undefined") return; // Ensure this runs only in the browser
+
     const section = sectionRef.current;
     const scrollContainer = horizontalRef.current;
 

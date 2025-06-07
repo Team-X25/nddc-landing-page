@@ -5,7 +5,7 @@ import CityProjectsModal from "../components/map-components/CityProjectsModal";
 import { states, cities, projects } from "../data/nigerDeltaData";
 import { City } from "../types/map-types";
 
-const MapPage: React.FC = () => {
+const MapPage = () => {
   const [sidebarOpen] = useState(true);
   const [activeState, setActiveState] = useState<string | null>(null);
   const [activeCity, setActiveCity] = useState<string | null>(null);
