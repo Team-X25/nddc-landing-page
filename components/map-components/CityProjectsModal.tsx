@@ -24,24 +24,28 @@ const CityProjectsModal: React.FC<CityProjectsModalProps> = ({
   return (
     <AnimatePresence>
       {isOpen && city && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 p-4">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-[1000] p-4">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="bg-white rounded-lg shadow-2xl w-full max-w-4xl overflow-hidden"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="bg-white rounded-lg shadow-2xl w-full max-w-4xl overflow-hidden relative"
+            style={{
+              maxHeight: "90vh",
+              marginTop: "60px"
+            }}
           >
             <div className="relative">
               <div className="bg-primary-800 text-white px-6 py-4 flex justify-between items-center">
-                <h2 className="text-xl font-bold text-white">
+                <h2 className="text-xl font-bold text-black">
                   {city.name} Projects
                 </h2>
                 <button
                   onClick={onClose}
                   className="rounded-full hover:bg-primary-700 p-1 transition-colors"
                 >
-                  <X size={24} />
+                  <X size={24} color="black" className="cursor-pointer" />
                 </button>
               </div>
 

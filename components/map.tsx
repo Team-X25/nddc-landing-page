@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import "leaflet/dist/leaflet.css";
 import Sidebar from "../components/map-components/Sidebar";
 import MapView from "../components/map-components/MapView";
 import CityProjectsModal from "../components/map-components/CityProjectsModal";
@@ -11,6 +12,14 @@ const MapPage = () => {
   const [activeCity, setActiveCity] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
+  const [isMapReady, setIsMapReady] = useState(false);
+
+  useEffect(() => {
+    // Ensure Leaflet is loaded in the browser
+    if (typeof window !== "undefined") {
+      setIsMapReady(true);
+    }
+  }, []);
 
   const handleStateClick = (stateId: string) => {
     setActiveState(stateId || null);
@@ -37,7 +46,7 @@ const MapPage = () => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen relative">
       <Sidebar
         states={states}
         isOpen={sidebarOpen}
@@ -49,15 +58,17 @@ const MapPage = () => {
 
       <div className="flex-1 relative overflow-hidden">
         <div className="absolute inset-0 h-[100vh] w-full">
-          <MapView
-            states={states}
-            cities={cities}
-            activeState={activeState}
-            activeCity={activeCity}
-            onStateClick={handleStateClick}
-            onCityClick={handleCityClick}
-            openCityModal={openCityModal}
-          />
+          {isMapReady && (
+            <MapView
+              states={states}
+              cities={cities}
+              activeState={activeState}
+              activeCity={activeCity}
+              onStateClick={handleStateClick}
+              onCityClick={handleCityClick}
+              openCityModal={openCityModal}
+            />
+          )}
         </div>
       </div>
 

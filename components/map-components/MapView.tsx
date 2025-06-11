@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+// import { MapPin } from "lucide-react";
 import {
   MapContainer,
   TileLayer,
@@ -6,10 +7,11 @@ import {
   Popup,
   useMap,
 } from "react-leaflet";
-import { Icon, LatLngTuple } from "leaflet";
+import { LatLngTuple, divIcon } from "leaflet";
 import { Maximize, Minimize, Compass } from "lucide-react";
 import { State, City } from "../../types/map-types";
 import { motion } from "framer-motion";
+import styles from "./MapView.module.css";
 
 // Niger Delta GeoJSON boundaries would go here in a real app
 // This is simplified for the example
@@ -60,6 +62,7 @@ const MapView: React.FC<MapViewProps> = ({
   openCityModal,
 }) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [mapError, setMapError] = useState<string | null>(null);
   const mapRef = useRef<HTMLDivElement>(null);
 
   const mapCenter: LatLngTuple = [5.3, 6.5]; // Approximate center of Niger Delta
@@ -85,32 +88,78 @@ const MapView: React.FC<MapViewProps> = ({
     }
   }
 
+  useEffect(() => {
+    // Handle fullscreen changes
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
   const toggleFullscreen = () => {
     if (mapRef.current) {
-      if (!isFullscreen) {
-        if (mapRef.current.requestFullscreen) {
-          mapRef.current.requestFullscreen();
+      try {
+        if (!isFullscreen) {
+          if (mapRef.current.requestFullscreen) {
+            mapRef.current.requestFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
         }
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        }
+        setIsFullscreen(!isFullscreen);
+      } catch (error) {
+        setMapError("Failed to toggle fullscreen mode");
+        console.error("Fullscreen error:", (error as Error));
       }
-      setIsFullscreen(!isFullscreen);
     }
   };
 
-  // Custom icon for city markers
-  const cityIcon = new Icon({
-    iconUrl:
-      "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png",
-    shadowUrl:
-      "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41],
-  });
+  // Create custom icon using MapPin
+  const createCustomIcon = (isActive: boolean) => {
+    return divIcon({
+      className: styles['custom-marker'],
+      html: `<div class="relative">
+        <svg 
+          width="32" 
+          height="32" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="${isActive ? '#2563eb' : '#1e40af'}" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"
+        >
+          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      </div>`,
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+  };
+
+  if (mapError) {
+    return (
+      <div className="flex items-center justify-center h-full bg-gray-100">
+        <div className="text-center p-4">
+          <p className="text-red-500 mb-2">{mapError}</p>
+          <button
+            onClick={() => setMapError(null)}
+            className="px-4 py-2 bg-primary-500 text-white rounded hover:bg-primary-600"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <motion.div
@@ -125,6 +174,10 @@ const MapView: React.FC<MapViewProps> = ({
         zoom={defaultZoom}
         className="w-full h-full"
         zoomControl={false}
+        scrollWheelZoom={true}
+        doubleClickZoom={true}
+        touchZoom={true}
+        dragging={true}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -140,7 +193,7 @@ const MapView: React.FC<MapViewProps> = ({
           <Marker
             key={city.id}
             position={city.coordinates}
-            icon={cityIcon}
+            icon={createCustomIcon(city.id === activeCity)}
             eventHandlers={{
               click: () => {
                 onCityClick(city.id, city.stateId);

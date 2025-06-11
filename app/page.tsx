@@ -10,7 +10,14 @@ const Explore = dynamic(() => import("@/components/explore"), { ssr: false });
 const Header = dynamic(() => import("@/components/header"), { ssr: false });
 const Heroes = dynamic(() => import("@/components/heroes"), { ssr: false });
 const Footer = dynamic(() => import("@/components/footer"), { ssr: false });
-const MapPage = dynamic(() => import("@/components/map"), { ssr: false });
+const MapPage = dynamic(() => import("@/components/map"), { 
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center h-screen">
+      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary-500"></div>
+    </div>
+  )
+});
 const LifeOfDelta = dynamic(() => import("@/components/lifeOfDelta"), {
   ssr: false,
 });
